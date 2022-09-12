@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+// Components
+import MovieCard from "./components/MovieCard/MovieCard";
+
+// Data
+import data from "./data";
+
+// Styling
+import GlobalStyle from "./globalStyle";
+import styled from "styled-components";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainContainer>
+      <GlobalStyle />
+      {data.map((movie, index) => {
+        return (
+          <MovieCard
+            key={index + movie.year}
+            title={movie.title}
+            year={movie.year}
+            director={movie.director}
+            duration={movie.duration}
+            genreList={movie.genre}
+            rating={movie.rate}
+          />
+        );
+      })}
+    </MainContainer>
   );
 }
 
 export default App;
+
+const MainContainer = styled.div`
+  padding: 2rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-columns: minmax(0, 1fr);
+`;
