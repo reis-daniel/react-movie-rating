@@ -2,38 +2,36 @@ import React from "react";
 
 // Styling
 import styled from "styled-components";
-import movies from "../data";
 
 export default function FilterBar({ movieList, setMovieList }) {
-  // Sort Movies by Title
+  //* Sort Movies by Title
   const sortMoviesByTitle = (order) => {
     setMovieList(
       [...movieList].sort((a, b) => {
         let titleA = a.title.toLowerCase().replace(" ", "");
         let titleB = b.title.toLowerCase().replace(" ", "");
 
+        //* Aufsteigend sortieren.
         if (order === "asc") {
-          if (titleA < titleB) {
-            return -1;
-          }
-          if (titleA > titleB) {
-            return 1;
-          }
-          return 0;
-        } else if (order === "desc") {
-          if (titleA < titleB) {
-            return 1;
-          }
-          if (titleA > titleB) {
-            return -1;
-          }
+          if (titleA < titleB) return -1;
+          if (titleA > titleB) return 1;
+          else return 0;
+        }
+        //* Absteigend sortieren.
+        else if (order === "desc") {
+          if (titleA < titleB) return 1;
+          if (titleA > titleB) return -1;
+          else return 0;
+        }
+        //* Damit wir im Notfall auch etweas returnen.
+        else {
           return 0;
         }
       })
     );
   };
 
-  // Sort Movies by Rating desc
+  //* Sort Movies by Rating desc
   const sortMoviesByRating = () => {
     setMovieList(
       [...movieList].sort((a, b) => {
@@ -42,14 +40,14 @@ export default function FilterBar({ movieList, setMovieList }) {
     );
   };
 
-  // Sort Movies by Year
+  //* Sort Movies by Year
   const sortMoviesByYear = (order) => {
     setMovieList(
       [...movieList].sort((a, b) => {
         if (order === "asc") {
-          return parseFloat(a.year) - parseFloat(b.year);
+          return Number(a.year) - Number(b.year);
         } else {
-          return parseFloat(b.year) - parseFloat(a.year);
+          return Number(b.year) - Number(a.year);
         }
       })
     );

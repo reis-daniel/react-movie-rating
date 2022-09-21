@@ -25,12 +25,13 @@ function App() {
           return (
             <MovieCard
               key={index + movie.year}
-              title={movie.title}
-              year={movie.year}
-              director={movie.director}
-              duration={movie.duration}
-              genreList={movie.genre}
-              rating={movie.rate}
+              {...movie}
+              //title={movie.title}
+              // year={movie.year}
+              // director={movie.director}
+              // duration={movie.duration}
+              // genreList={movie.genre}
+              // rating={movie.rate}
             />
           );
         })}

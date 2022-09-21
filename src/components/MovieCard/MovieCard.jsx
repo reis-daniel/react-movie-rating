@@ -5,20 +5,27 @@ import Rating from "./Rating";
 // Styling
 import styled from "styled-components";
 
-export default function MovieCard(props) {
+export default function MovieCard({
+  title,
+  year,
+  director,
+  duration,
+  rate,
+  genre,
+}) {
   return (
     <CardContainer>
       <PrimaryDataContainer>
-        <h2 className="movie-title">{props.title}</h2>
-        <h2>{props.year}</h2>
-        <h3>{props.director}</h3>
-        <h3>{props.duration}</h3>
-        <Rating rating={props.rating} />
+        <h2 className="movie-title">{title}</h2>
+        <h2>{year}</h2>
+        <h3>{director}</h3>
+        <h3>{duration}</h3>
+        <Rating rating={rate} />
       </PrimaryDataContainer>
       <ul>
-        {props.genreList.map((genre, index) => {
+        {genre.map((genre, index) => {
           return (
-            <li key={props.title.replace(/\s/g, "").toLowerCase() + index}>
+            <li key={title.replace(/\s/g, "").toLowerCase() + index}>
               {genre}
             </li>
           );
